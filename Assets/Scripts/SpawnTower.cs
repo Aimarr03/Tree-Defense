@@ -8,7 +8,7 @@ public class SpawnTower : MonoBehaviour
 {
     public List<GameObject> towerPrefabs;
     public List<Image> towerSelections;
-
+    Econmy economy;
     public int idTower = -1;
     Color unselectedColor = new Color(0.2f, 0.4f, 0.2f);
     public Tilemap towerGround;
@@ -16,7 +16,7 @@ public class SpawnTower : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        economy = GameObject.Find("Script").GetComponent<Econmy>();
     }
 
     // Update is called once per frame
@@ -38,15 +38,24 @@ public class SpawnTower : MonoBehaviour
             Debug.Log("Before: " + towerGround.GetColliderType(tilePos));
             if (towerGround.GetColliderType(tilePos) == Tile.ColliderType.Sprite)
             {
-                towerSpawning(modifiedPos);
-                towerGround.SetColliderType(tilePos, Tile.ColliderType.None);
-                Debug.Log("After: " + towerGround.GetColliderType(tilePos));
+                int cost = getCost();
+                if (GetComponent<Econmy>().useMoney(cost))
+                {
+                    towerSpawning(modifiedPos);
+                    towerGround.SetColliderType(tilePos, Tile.ColliderType.None);
+                    Debug.Log("After: " + towerGround.GetColliderType(tilePos));
+                }
             }
             else
             {
                 Debug.Log("Already Built!");
             }
         }
+    }
+    int getCost()
+    {
+        int cost = towerPrefabs[idTower].GetComponent<TowerStats>().cost;
+        return cost;
     }
     void towerSpawning(Vector3 position)
     {
