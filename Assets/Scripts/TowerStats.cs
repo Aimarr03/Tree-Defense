@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TowerStats : MonoBehaviour
 {
+    public string towerName;
     public int cost = 5;
-    public int damage =  10;
+    
+
 }
