@@ -4,15 +4,36 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private Enemy targettedEnemy;
+    private float projectileSpeed;
+    private AttackRange attackRange;
+    public int damage;
 
-    // Update is called once per frame
     void Update()
     {
-        
+        Aim();
+    }
+
+    public void getData(AttackRange range)
+    {
+        this.targettedEnemy = range.Target;
+        this.attackRange = range;
+        this.projectileSpeed = range.ProjectileSpeed;
+        this.damage = range.Damage;
+    }
+    void Aim()
+    {
+        if (targettedEnemy != null)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, targettedEnemy.transform.position, projectileSpeed*Time.deltaTime);
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "GroundEnemy"|| collision.tag == "AirEnemy")
+        {
+            collision.gameObject.GetComponent<Enemy>().takeDamage(damage);
+            Destroy(gameObject);
+        }
     }
 }

@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class AttackRange : MonoBehaviour
 {
-    public int damage = 10;
-    public float attackSpeed = 0.5f;
+    private int damage = 10;
+    [SerializeField]private float projectileSpeed = 10f;
     public string theTowerName;
 
     bool canAttack = false;
@@ -16,6 +16,19 @@ public class AttackRange : MonoBehaviour
     private Enemy target;
     private Queue<Enemy> enemies = new Queue<Enemy>();
     public GameObject ammo;
+
+    public float ProjectileSpeed
+    {
+        get { return projectileSpeed; }
+    }
+    public Enemy Target
+    {
+        get { return target; }
+    }
+    public int Damage
+    {
+        get { return damage; }
+    }
 
     private void Start()
     {
@@ -62,6 +75,8 @@ public class AttackRange : MonoBehaviour
     void Shoot()
     {
         GameObject projectile = Instantiate(ammo);
+        Projectile aim = projectile.GetComponent<Projectile>();
+        aim.getData(this);
         projectile.transform.position = transform.position;
         Projectile projectileScript = projectile.GetComponent<Projectile>();
     }
