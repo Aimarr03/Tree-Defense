@@ -8,14 +8,17 @@ public class Enemy : MonoBehaviour
     public int health = 10;
     public float moveSpeed = 5f;
     public bool alive = true;
+    [SerializeField] private int bounty = 5;
+
     Transform position;
     private Color defaultColor;
     private Color attackedColor;
     private SpriteRenderer enemySprite;
-    int damage;
+    Econmy economy;
 
     private void Start()
     {
+        economy = GameObject.Find("Script").GetComponent<Econmy>();
         enemySprite = GetComponent<SpriteRenderer>();
         defaultColor = GetComponent<SpriteRenderer>().color;
         attackedColor = new Color(1, 0, 0);
@@ -32,6 +35,7 @@ public class Enemy : MonoBehaviour
         {
             Destroy(gameObject);
             alive = false;
+            economy.gainMoney(bounty);
         }
     }
     IEnumerator Damaged()

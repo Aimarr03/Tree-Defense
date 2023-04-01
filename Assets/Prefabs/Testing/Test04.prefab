@@ -133,8 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 246b632144935274daf3ac68e22eefeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
-  attackSpeed: 0.5
+  projectileSpeed: 10
   theTowerName: Test04
   attackCooldown: 1
   ammo: {fileID: 1761404048428614243, guid: fe2542f9c3c8ade46ab34747a77fffce, type: 3}
@@ -150,9 +149,11 @@ GameObject:
   - component: {fileID: 885792052114692223}
   - component: {fileID: -279857313693225994}
   - component: {fileID: 1076084779976989437}
+  - component: {fileID: 1429184635849637625}
+  - component: {fileID: 4229367297897707909}
   m_Layer: 0
   m_Name: Test04
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -266,3 +267,65 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!61 &1429184635849637625
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8143009578491833081}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.125, y: 2.25}
+    newSize: {x: 1.125, y: 2.25}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.125, y: 2.25}
+  m_EdgeRadius: 0
+--- !u!114 &4229367297897707909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8143009578491833081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 554ee4f2f8c739946b88cdf052c5206d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackRangeSprite: {fileID: 0}
+  towerName: {fileID: 6527755220189417648, guid: ed44be4d03086b74e84dc5a79876a772, type: 3}
+  towerAttack: {fileID: 2122909165401764152, guid: a6cd0e6aa68f3ab4895d80d65ea9c137, type: 3}
+  towerAttackSpeed: {fileID: 7169965853637581169, guid: a38fd8cb62c11494f8c553d21a583f37, type: 3}
+  towerStats: {fileID: 0}

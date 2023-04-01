@@ -8,6 +8,7 @@ public class SpawnTower : MonoBehaviour
 {
     public List<GameObject> towerPrefabs;
     public List<Image> towerSelections;
+    private List<GameObject> instantiatedTower;
     Econmy economy;
     public int idTower = -1;
     Color unselectedColor = new Color(0.2f, 0.4f, 0.2f);
@@ -33,6 +34,7 @@ public class SpawnTower : MonoBehaviour
         {
             var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             var tilePos = towerGround.WorldToCell(mousePos);
+            Debug.Log(tilePos);
             var centerPos = towerGround.GetCellCenterWorld(tilePos);
             var modifiedPos = centerPos + new Vector3(0, 0.5f, 0);
             Debug.Log("Before: " + towerGround.GetColliderType(tilePos));
@@ -52,6 +54,8 @@ public class SpawnTower : MonoBehaviour
             }
         }
     }
+    
+
     int getCost()
     {
         int cost = towerPrefabs[idTower].GetComponent<TowerStats>().cost;

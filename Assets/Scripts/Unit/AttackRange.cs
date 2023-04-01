@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class AttackRange : MonoBehaviour
 {
-    private int damage = 10;
+    [SerializeField]private int damage = 10;
     [SerializeField]private float projectileSpeed = 10f;
     public string theTowerName;
 
@@ -20,6 +20,7 @@ public class AttackRange : MonoBehaviour
     public float ProjectileSpeed
     {
         get { return projectileSpeed; }
+        set { projectileSpeed = value; }
     }
     public Enemy Target
     {
@@ -28,6 +29,7 @@ public class AttackRange : MonoBehaviour
     public int Damage
     {
         get { return damage; }
+        set { damage = value; }
     }
 
     private void Start()
@@ -60,7 +62,7 @@ public class AttackRange : MonoBehaviour
             Debug.Log(target.IsUnityNull());
             Debug.Log(target);
         }
-        if(target != null)
+        if(target != null && target.alive)
         {
             Debug.Log("Target is aimed");
             if (canAttack)
@@ -109,14 +111,5 @@ public class AttackRange : MonoBehaviour
             Debug.Log("Enemy exit tower territory");
             target = null;
         }
-    }
-    public void OnCollisionEnter2D(Collision2D collision)
-    {
-        
-    }
-    
-    public void OnCollisionExit2D(Collision2D collision)
-    {
-        
     }
 }

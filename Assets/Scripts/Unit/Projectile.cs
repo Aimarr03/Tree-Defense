@@ -23,7 +23,7 @@ public class Projectile : MonoBehaviour
     }
     void Aim()
     {
-        if (targettedEnemy != null)
+        if (targettedEnemy != null && targettedEnemy.alive)
         {
             transform.position = Vector3.MoveTowards(transform.position, targettedEnemy.transform.position, projectileSpeed*Time.deltaTime);
         }

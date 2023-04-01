@@ -11,9 +11,11 @@ GameObject:
   - component: {fileID: 6501128368187611656}
   - component: {fileID: 3904593144933307312}
   - component: {fileID: -7980623912778682019}
+  - component: {fileID: 621455564059911033}
+  - component: {fileID: 506654902748064962}
   m_Layer: 0
   m_Name: Test02
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,6 +102,68 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerName: Test02
   cost: 6
+--- !u!61 &621455564059911033
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3512521824498197136}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.125, y: 2.25}
+    newSize: {x: 1.125, y: 2.25}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.125, y: 2.25}
+  m_EdgeRadius: 0
+--- !u!114 &506654902748064962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3512521824498197136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 554ee4f2f8c739946b88cdf052c5206d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackRangeSprite: {fileID: 2047850966730414627}
+  towerName: {fileID: 6527755220189417648, guid: ed44be4d03086b74e84dc5a79876a772, type: 3}
+  towerAttack: {fileID: 2122909165401764152, guid: a6cd0e6aa68f3ab4895d80d65ea9c137, type: 3}
+  towerAttackSpeed: {fileID: 7169965853637581169, guid: a38fd8cb62c11494f8c553d21a583f37, type: 3}
+  towerStats: {fileID: 0}
 --- !u!1 &7863748207467049983
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,8 +297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 246b632144935274daf3ac68e22eefeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
-  attackSpeed: 0.5
+  projectileSpeed: 10
   theTowerName: Test02
   attackCooldown: 1
   ammo: {fileID: 1761404048428614243, guid: fe2542f9c3c8ade46ab34747a77fffce, type: 3}
