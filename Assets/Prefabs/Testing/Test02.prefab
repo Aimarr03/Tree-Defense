@@ -159,10 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 554ee4f2f8c739946b88cdf052c5206d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRangeSprite: {fileID: 2047850966730414627}
-  towerName: {fileID: 6527755220189417648, guid: ed44be4d03086b74e84dc5a79876a772, type: 3}
-  towerAttack: {fileID: 2122909165401764152, guid: a6cd0e6aa68f3ab4895d80d65ea9c137, type: 3}
-  towerAttackSpeed: {fileID: 7169965853637581169, guid: a38fd8cb62c11494f8c553d21a583f37, type: 3}
+  attackRangeSprite: {fileID: 0}
   towerStats: {fileID: 0}
 --- !u!1 &7863748207467049983
 GameObject:
@@ -297,6 +294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 246b632144935274daf3ac68e22eefeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 10
   projectileSpeed: 10
   theTowerName: Test02
   attackCooldown: 1

@@ -36,7 +36,7 @@ public class SpawnTower : MonoBehaviour
             var tilePos = towerGround.WorldToCell(mousePos);
             Debug.Log(tilePos);
             var centerPos = towerGround.GetCellCenterWorld(tilePos);
-            var modifiedPos = centerPos + new Vector3(0, 0.5f, 0);
+            var modifiedPos = centerPos + new Vector3(0, -0.5f, 0);
             Debug.Log("Before: " + towerGround.GetColliderType(tilePos));
             if (towerGround.GetColliderType(tilePos) == Tile.ColliderType.Sprite)
             {

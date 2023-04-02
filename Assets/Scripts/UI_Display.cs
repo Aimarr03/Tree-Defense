@@ -11,6 +11,7 @@ public class UI_Display : MonoBehaviour
     string name;
     string damage;
     string attackSpeed;
+    string level;
     /*public Text towerName;
     public Text towerDamage;
     public Text attackSpeed;*/
@@ -23,19 +24,27 @@ public class UI_Display : MonoBehaviour
 
     public void OnMouseOver()
     {
-        name = towerStats.name;
+        name = towerStats.theTowerName;
         damage = towerStats.Damage.ToString();
         attackSpeed = towerStats.attackCooldown.ToString();
-        GameManager.instance.updateInfo(name, damage, attackSpeed);
+        level = towerStats.level.ToString();
+        GameManager.instance.updateInfo(name, damage, attackSpeed, level);
+        GameManager.instance.displayUpgradeOption(name,towerStats.cost);
+        GameManager.instance.displayUpgradeOption(name,towerStats.cost);
         //Debug.Log("Test");
         attackRangeSprite.enabled = true;
         //towerData.enabled = true;
     }
     public void OnMouseDown()
     {
-        attackRangeSprite.transform.localScale += new Vector3(0.5f,0.5f,0.5f);
-        towerStats.Damage += 1;
-        towerStats.attackCooldown -= 0.2f;
+        if (GameManager.instance.financial.useMoney(towerStats.cost))
+        {
+            attackRangeSprite.transform.localScale += new Vector3(0.5f,0.5f,0.5f);
+            towerStats.Damage += 1;
+            towerStats.attackCooldown -= 0.2f;
+            GameManager.instance.displayUpgradeOption(name,towerStats.cost);
+            towerStats.cost++;
+        }
     }
     public void OnMouseExit()
     {

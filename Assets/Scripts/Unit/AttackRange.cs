@@ -12,7 +12,9 @@ public class AttackRange : MonoBehaviour
     bool canAttack = false;
     private float attackTimer;
     public float attackCooldown = 1f;
-
+    public int level = 1;
+    public int cost = 2;
+    
     private Enemy target;
     private Queue<Enemy> enemies = new Queue<Enemy>();
     public GameObject ammo;
