@@ -27,10 +27,14 @@ public class SpawnTower : MonoBehaviour
         {
             getPos();
         }
+        if (!GameManager.instance.gameStatus)
+        {
+            GameManager.instance.GameOver();
+        }
     }
     void getPos()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && GameManager.instance.gameStatus)
         {
             var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             var tilePos = towerGround.WorldToCell(mousePos);
@@ -74,10 +78,14 @@ public class SpawnTower : MonoBehaviour
     }
     public void setID(int input)
     {
-        deselectID();
-        idTower = input;
-        Debug.Log("ID set to: " + idTower);
-        towerSelections[idTower].color = new Color(1, 1, 1);
+        if (GameManager.instance.gameStatus)
+        {
+            deselectID();
+            idTower = input;
+            Debug.Log("ID set to: " + idTower);
+            towerSelections[idTower].color = new Color(1, 1, 1);
+
+        }
     }
     public void deselectID()
     {

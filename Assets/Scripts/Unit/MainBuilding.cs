@@ -5,10 +5,22 @@ using UnityEngine;
 public class MainBuilding : MonoBehaviour
 {
     public int health;
+    public Color damagedColor;
+    public Color defaultColor;
+    private SpriteRenderer spriteRenderer;
+
+    public void Awake()
+    {
+        damagedColor = new Color(1, 0, 0);
+        defaultColor = new Color(1,1,1);
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
     public void takeDamaged(int damage)
     {
         if (health > 0) { 
             health-=damage;
+            StartCoroutine(colorDamaged());
             GameManager.instance.reduceHp(health);
             //GameManager.instance.HP.text = health.ToString();
         }
@@ -23,9 +35,15 @@ public class MainBuilding : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag=="AirEnemy" || collision.tag == "GroundEnemy")
+        if (collision.tag == "AirEnemy" || collision.tag == "GroundEnemy")
         {
             Debug.Log("Enemy got detected!");
-        }    
+        }
+    }
+    IEnumerator colorDamaged()
+    {
+        spriteRenderer.color = damagedColor;
+        yield return new WaitForSeconds(0.3f);
+        spriteRenderer.color = defaultColor;
     }
 }

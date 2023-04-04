@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class GameManager : MonoBehaviour
     public Text upgradeLevel;
 
     public Text HP;
+    public GameObject gameoverPanel;
 
     public bool gameStatus;
     private void Awake()
@@ -43,17 +45,22 @@ public class GameManager : MonoBehaviour
         towerLevel.text = "Tower Lvl: "+level;
         towerAttackSpeed.text = "Tower AtckSd ="+attackSpeed;
     }
+
     
     public void GameOver()
     {
-
+        gameoverPanel.SetActive(true);
     }
-    public void StartGame()
+    public void RestartGame()
     {
-
+        gameoverPanel.SetActive(false);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-
-
+    public void QuitGame()
+    {
+        Debug.Log("Quit");
+        Application.Quit();
+    }
 
     public void reduceHp(int health)
     {

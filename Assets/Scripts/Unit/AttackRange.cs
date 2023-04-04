@@ -40,7 +40,10 @@ public class AttackRange : MonoBehaviour
     }
     public void Update()
     {
-        Attack();    
+        if (GameManager.instance.gameStatus)
+        {
+            Attack();    
+        }
     }
 
     void Attack()

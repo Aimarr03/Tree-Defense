@@ -10,11 +10,15 @@ public class EnemyMove : MonoBehaviour
     
     private void Update()
     {
-        horizontalInput = Input.GetAxis("Horizontal");
-        verticalInput = Input.GetAxisRaw("Vertical");
+        if (GameManager.instance.gameStatus)
+        {
+            horizontalInput = Input.GetAxis("Horizontal");
+            verticalInput = Input.GetAxisRaw("Vertical");
 
-        transform.Translate(Vector2.right * Time.deltaTime * speed*horizontalInput);
-        transform.Translate(Vector2.up * Time.deltaTime * speed*verticalInput);
+            transform.Translate(Vector2.right * Time.deltaTime * speed * horizontalInput);
+            transform.Translate(Vector2.up * Time.deltaTime * speed * verticalInput);
+        }
+        
     }
 
 }

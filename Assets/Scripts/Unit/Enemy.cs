@@ -52,7 +52,7 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "MainBuilding")
+        if (collision.tag == "MainBuilding" && GameManager.instance.gameStatus)
         {
             Debug.Log("Main Building");
             MainBuilding building = collision.GetComponent<MainBuilding>();
