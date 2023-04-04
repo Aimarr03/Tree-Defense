@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6000465147648038097}
   m_Layer: 0
   m_Name: Test03
-  m_TagString: GroundEnemy
+  m_TagString: AirEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8124742446733410940
 SpriteRenderer:
@@ -114,8 +114,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
+  damage: 10
+  attackSpeed: 0.5
   moveSpeed: 5
   alive: 1
+  bounty: 5
 --- !u!50 &2065419696
 Rigidbody2D:
   serializedVersion: 4

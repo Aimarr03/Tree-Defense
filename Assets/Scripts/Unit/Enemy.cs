@@ -6,6 +6,8 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public int health = 10;
+    public int damage = 10;
+    public float attackSpeed = 0.5f;
     public float moveSpeed = 5f;
     public bool alive = true;
     [SerializeField] private int bounty = 5;
@@ -14,6 +16,7 @@ public class Enemy : MonoBehaviour
     private Color defaultColor;
     private Color attackedColor;
     private SpriteRenderer enemySprite;
+    private MainBuilding mainBuilding;
     Econmy economy;
 
     private void Start()
@@ -36,6 +39,32 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
             alive = false;
             economy.gainMoney(bounty);
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("Collides!");
+        if (collision.gameObject.tag == "MainBuilding")
+        {
+            Debug.Log("MainBuilding Collides");
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "MainBuilding")
+        {
+            Debug.Log("Main Building");
+            MainBuilding building = collision.GetComponent<MainBuilding>();
+            StartCoroutine(Attacking(building));
+        }
+    }
+    public IEnumerator Attacking(MainBuilding test)
+    {
+        while (test.health > 0)
+        {
+            yield return new WaitForSeconds(attackSpeed);
+            test.takeDamaged(damage);
         }
     }
     IEnumerator Damaged()

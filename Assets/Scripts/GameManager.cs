@@ -7,7 +7,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public Econmy financial;
-    
+    public MainBuilding building;
+
     public Text towerName;
     public Text towerDamage;
     public Text towerAttackSpeed;
@@ -17,10 +18,17 @@ public class GameManager : MonoBehaviour
     public Image upgradeButton;
     public Text upgradeCost;
     public Text upgradeLevel;
+
+    public Text HP;
+
+    public bool gameStatus;
     private void Awake()
     {
         financial = GetComponent<Econmy>();
         instance = this;
+        building = GameObject.Find("Test01").GetComponent<MainBuilding>();
+        HP.text = building.health.ToString();
+        gameStatus = true;
     }
 
     public void displayUpgradeOption(string name, int cost)
@@ -34,5 +42,29 @@ public class GameManager : MonoBehaviour
         towerDamage.text ="Tower damage ="+ damage;
         towerLevel.text = "Tower Lvl: "+level;
         towerAttackSpeed.text = "Tower AtckSd ="+attackSpeed;
+    }
+    
+    public void GameOver()
+    {
+
+    }
+    public void StartGame()
+    {
+
+    }
+
+
+
+    public void reduceHp(int health)
+    {
+        if (gameStatus)
+        {
+            //building.health -= damage;
+            HP.text = health.ToString();
+        }
+        if(building.health <= 0)
+        {
+            gameStatus = false;
+        }
     }
 }

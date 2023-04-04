@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 39006299
   m_SortingLayer: 3
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: eaa4232fb63038a498383283e3b82fdf, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 516bc9c212b16f04da7af0e4bd85ae7a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -138,7 +138,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.125, y: 2.25}
+    oldSize: {x: 1.5, y: 3}
     newSize: {x: 1.125, y: 2.25}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -298,4 +298,6 @@ MonoBehaviour:
   projectileSpeed: 10
   theTowerName: Test02
   attackCooldown: 1
+  level: 1
+  cost: 2
   ammo: {fileID: 1761404048428614243, guid: fe2542f9c3c8ade46ab34747a77fffce, type: 3}
