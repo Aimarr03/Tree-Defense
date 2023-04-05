@@ -5,8 +5,10 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public string name;
     public int health = 10;
     public int damage = 10;
+    public int score = 500;
     public float attackSpeed = 0.5f;
     public float moveSpeed = 5f;
     public bool alive = true;
@@ -39,6 +41,7 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
             alive = false;
             economy.gainMoney(bounty);
+            GameManager.instance.updateScoreBoard(score);
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -72,5 +75,12 @@ public class Enemy : MonoBehaviour
         enemySprite.color = attackedColor;
         yield return new WaitForSeconds(0.7f);
         enemySprite.color = defaultColor;
+    }
+    public void upgradeEnemy()
+    {
+        health += 10;
+        damage += 4;
+        attackSpeed -= 0.04f;
+        score += 15;
     }
 }

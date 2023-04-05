@@ -9,15 +9,20 @@ public class SpawnTower : MonoBehaviour
     public List<GameObject> towerPrefabs;
     public List<Image> towerSelections;
     private List<GameObject> instantiatedTower;
+
     Econmy economy;
     public int idTower = -1;
     Color unselectedColor = new Color(0.2f, 0.4f, 0.2f);
     public Tilemap towerGround;
     public Transform containment;
+    public Vector3Int tilePosInfo;
+
+    public bool buildNow;
     // Start is called before the first frame update
     void Start()
     {
         economy = GameObject.Find("Script").GetComponent<Econmy>();
+        idTower = -1;
     }
 
     // Update is called once per frame
@@ -27,17 +32,24 @@ public class SpawnTower : MonoBehaviour
         {
             getPos();
         }
+        if(GameManager.instance.score >= 500)
+        {
+            GameManager.instance.gameStatus = false;
+            GameManager.instance.win = true;
+        }
         if (!GameManager.instance.gameStatus)
         {
-            GameManager.instance.GameOver();
+            if (!GameManager.instance.win) GameManager.instance.GameOver();
+            else GameManager.instance.Win();
         }
     }
     void getPos()
     {
-        if (Input.GetMouseButton(0) && GameManager.instance.gameStatus)
+        if (Input.GetMouseButton(0) && GameManager.instance.gameStatus && buildNow)
         {
             var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             var tilePos = towerGround.WorldToCell(mousePos);
+            tilePosInfo = tilePos;
             Debug.Log(tilePos);
             var centerPos = towerGround.GetCellCenterWorld(tilePos);
             var modifiedPos = centerPos;
@@ -70,11 +82,16 @@ public class SpawnTower : MonoBehaviour
         GameObject tower = Instantiate(towerPrefabs[idTower], containment);
         tower.transform.position = position;
         deselectID();
+        buildNow = false;
     }
     public bool checkID()
     {
         if (idTower != -1) return true;
         else return false;
+    }
+    public void canBuild()
+    {
+        buildNow = true;
     }
     public void setID(int input)
     {
@@ -94,5 +111,6 @@ public class SpawnTower : MonoBehaviour
         {
             towerSelections[counter].color = unselectedColor;
         }
+        buildNow = false;
     }
 }

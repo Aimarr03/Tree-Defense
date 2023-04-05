@@ -8,6 +8,8 @@ TagManager:
   - GroundEnemy
   - AirEnemy
   - Ammo
+  - MainBuilding
+  - HeavyEnemy
   layers:
   - Default
   - TransparentFX
