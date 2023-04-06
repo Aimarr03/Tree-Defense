@@ -16,10 +16,10 @@ public class Projectile : MonoBehaviour
 
     public void getData(AttackRange range)
     {
-        this.targettedEnemy = range.Target;
-        this.attackRange = range;
-        this.projectileSpeed = range.ProjectileSpeed;
-        this.damage = range.Damage;
+        targettedEnemy = range.Target;
+        attackRange = range;
+        projectileSpeed = range.ProjectileSpeed;
+        damage = range.Damage;
     }
     void Aim()
     {

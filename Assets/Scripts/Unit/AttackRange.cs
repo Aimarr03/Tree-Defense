@@ -85,13 +85,11 @@ public class AttackRange : MonoBehaviour
         Projectile aim = projectile.GetComponent<Projectile>();
         aim.getData(this);
         projectile.transform.position = transform.position;
-        Projectile projectileScript = projectile.GetComponent<Projectile>();
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(theTowerName == "Test04");
-        if (theTowerName == "Test02")
+        if (theTowerName == "Canon")
         {
             if (collision.tag == "GroundEnemy")
             {
@@ -99,7 +97,7 @@ public class AttackRange : MonoBehaviour
                 enemies.Enqueue(collision.GetComponent<Enemy>());
             }
         }
-        else if (theTowerName == "Test04")
+        else if (theTowerName == "AirStrike")
         {
             if (collision.tag == "GroundEnemy" || collision.tag == "AirEnemy")
             {

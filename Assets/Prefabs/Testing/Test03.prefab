@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2089928597}
   - component: {fileID: 2065419696}
   - component: {fileID: 6000465147648038097}
+  - component: {fileID: 6298329434713133190}
   m_Layer: 0
   m_Name: Test03
   m_TagString: AirEnemy
@@ -113,11 +114,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4697d676bba302849af5df1b67898567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
-  damage: 10
+  name: 
+  health: 15
+  damage: 1
+  score: 5
   attackSpeed: 0.5
   moveSpeed: 5
   alive: 1
+  statusAttack: 0
   bounty: 5
 --- !u!50 &2065419696
 Rigidbody2D:
@@ -191,3 +195,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.125, y: 2.25}
   m_EdgeRadius: 0
+--- !u!114 &6298329434713133190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8384978471741396543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3c85af39336e9247999e826a11f6844, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

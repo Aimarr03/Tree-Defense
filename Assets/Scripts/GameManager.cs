@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     public int score;
     public Text waves;
     public Text scoreboard;
+    public Text errorUpgrade;
 
     public Text HP;
     public Text resultBoard;

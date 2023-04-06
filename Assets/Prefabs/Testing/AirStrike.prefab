@@ -135,7 +135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   projectileSpeed: 10
-  theTowerName: Test04
+  theTowerName: AirStrike
   attackCooldown: 1
   level: 1
   cost: 2
@@ -155,7 +155,7 @@ GameObject:
   - component: {fileID: 1429184635849637625}
   - component: {fileID: 4229367297897707909}
   m_Layer: 0
-  m_Name: Test04
+  m_Name: AirStrike
   m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -328,4 +328,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackRangeSprite: {fileID: 0}
-  towerStats: {fileID: 0}
+  towerStatsAttackRange: {fileID: 0}

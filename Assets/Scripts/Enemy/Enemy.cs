@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -12,6 +13,7 @@ public class Enemy : MonoBehaviour
     public float attackSpeed = 0.5f;
     public float moveSpeed = 5f;
     public bool alive = true;
+    public bool statusAttack;
     [SerializeField] private int bounty = 5;
 
     Transform position;
@@ -27,6 +29,7 @@ public class Enemy : MonoBehaviour
         enemySprite = GetComponent<SpriteRenderer>();
         defaultColor = GetComponent<SpriteRenderer>().color;
         attackedColor = new Color(1, 0, 0);
+        statusAttack = true;
     }
     public void takeDamage(int damage)
     {
@@ -55,6 +58,7 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        statusAttack = true;
         if (collision.tag == "MainBuilding" && GameManager.instance.gameStatus)
         {
             Debug.Log("Main Building");
@@ -62,13 +66,21 @@ public class Enemy : MonoBehaviour
             StartCoroutine(Attacking(building));
         }
     }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        statusAttack = false;
+    }
     public IEnumerator Attacking(MainBuilding test)
     {
-        while (test.health > 0)
+        while (!gameObject.IsDestroyed() && statusAttack)
         {
             yield return new WaitForSeconds(attackSpeed);
             test.takeDamaged(damage);
         }
+    }
+    IEnumerator intervalAttack()
+    {
+        yield return new WaitForSeconds(attackSpeed);
     }
     IEnumerator Damaged()
     {
