@@ -30,7 +30,7 @@ public class Projectile : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "GroundEnemy"|| collision.tag == "AirEnemy")
+        if(collision.tag == "GroundEnemy"|| collision.tag == "AirEnemy" || collision.tag == "HeavyEnemy")
         {
             collision.gameObject.GetComponent<Enemy>().takeDamage(damage);
             Destroy(gameObject);
