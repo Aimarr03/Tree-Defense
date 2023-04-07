@@ -17,10 +17,15 @@ public class SpawnTower : MonoBehaviour
     public Transform containment;
     public Vector3Int tilePosInfo;
 
+    public AudioSource audioPlay;
+    public AudioClip buildSound;
+
     public bool buildNow;
     // Start is called before the first frame update
     void Start()
     {
+        GameManager.instance.gameStatus = true;
+        audioPlay = GetComponent<AudioSource>();
         economy = GameObject.Find("Script").GetComponent<Econmy>();
         idTower = -1;
     }
@@ -81,6 +86,7 @@ public class SpawnTower : MonoBehaviour
     {
         GameObject tower = Instantiate(towerPrefabs[idTower], containment);
         tower.transform.position = position;
+        audioPlay.PlayOneShot(buildSound);
         deselectID();
         buildNow = false;
     }

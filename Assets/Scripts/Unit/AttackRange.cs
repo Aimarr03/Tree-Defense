@@ -10,11 +10,17 @@ public class AttackRange : MonoBehaviour
     public string theTowerName;
 
     bool canAttack = false;
+    bool supported = false;
+
     private float attackTimer;
     public float attackCooldown = 1f;
     public int level = 1;
     public int cost = 2;
     public int id = -1;
+
+    public AudioSource towerSound;
+    public AudioClip canonAttack;
+    public AudioClip airAttack;
     
     private Enemy target;
     private Queue<Enemy> enemies = new Queue<Enemy>();
@@ -35,9 +41,9 @@ public class AttackRange : MonoBehaviour
         set { damage = value; }
     }
 
-    private void Start()
+    private void Awake()
     {
-
+        towerSound = GetComponent<AudioSource>();
     }
     public void Update()
     {
@@ -94,6 +100,18 @@ public class AttackRange : MonoBehaviour
             aim = projectile.GetComponent<Projectile>();
             aim.getData(this);
             projectile.transform.position = transform.position;
+            AttackSound();
+        }
+    }
+    void AttackSound()
+    {
+        if(theTowerName == "AirStrike")
+        {
+            towerSound.PlayOneShot(airAttack);
+        }
+        if(theTowerName == "Canon")
+        {
+            towerSound.PlayOneShot(airAttack);
         }
     }
     IEnumerator multipleAttack()
@@ -104,6 +122,7 @@ public class AttackRange : MonoBehaviour
             Projectile ammoAim = singleAmmo.GetComponent<Projectile>();
             ammoAim.getData(this);
             singleAmmo.transform.position = transform.position;
+            AttackSound();
             yield return new WaitForSeconds(0.2f);
         }
     }
@@ -113,6 +132,10 @@ public class AttackRange : MonoBehaviour
         {
             if (collision.tag == "GroundEnemy" || collision.tag == "HeavyEnemy")
             {
+                if(id == 0)
+                {
+                    collision.GetComponent<EnemyDirection>().movespeed *= 0.5f;
+                }
                 Debug.Log("Enemy enter test02 territory");
                 enemies.Enqueue(collision.GetComponent<Enemy>());
             }
@@ -123,7 +146,6 @@ public class AttackRange : MonoBehaviour
             {
                 Debug.Log("Enemy enter test04 territory");
                 enemies.Enqueue(collision.GetComponent<Enemy>());
-                
             }
         }
     }

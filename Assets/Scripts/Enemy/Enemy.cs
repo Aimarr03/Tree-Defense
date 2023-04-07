@@ -24,8 +24,14 @@ public class Enemy : MonoBehaviour
     private MainBuilding mainBuilding;
     Econmy economy;
 
+    public AudioSource audioPlayer;
+    public AudioClip dragonAttacked;
+    public AudioClip heavyAttacked;
+    public AudioClip airAttacked;
+
     private void Start()
     {
+        audioPlayer = GetComponent<AudioSource>();
         canMove = true;
         economy = GameObject.Find("Script").GetComponent<Econmy>();
         enemySprite = GetComponent<SpriteRenderer>();
@@ -37,6 +43,18 @@ public class Enemy : MonoBehaviour
     {
         if (health > 0)
         {
+            if(gameObject.tag == "GroundEnemy")
+            {
+                audioPlayer.PlayOneShot(dragonAttacked);
+            }
+            if(gameObject.tag == "AirEnemy")
+            {
+                audioPlayer.PlayOneShot(airAttacked);
+            }
+            if(gameObject.tag == "HeavyEnemy")
+            {
+                audioPlayer.PlayOneShot(heavyAttacked);
+            }
             StartCoroutine(Damaged());
             health -= damage;
             alive = true;

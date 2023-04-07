@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
     public GameObject upgradeAirTower;
 
 
-    public bool gameStatus;
+    public bool gameStatus = true;
     public bool win;
 
     private void Awake()

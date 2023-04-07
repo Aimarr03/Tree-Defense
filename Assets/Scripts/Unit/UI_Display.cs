@@ -18,6 +18,9 @@ public class UI_Display : MonoBehaviour
     public Text errorUpgrade;
     public GameObject upgradeAir;
     public GameObject upgradeCanon;
+    public AudioSource upgradeSound;
+    public AudioClip upgradeSoundClip;
+    public AudioClip sellingClip;
 
     SpriteRenderer towerSprite;
     public Sprite airTower01;
@@ -34,7 +37,7 @@ public class UI_Display : MonoBehaviour
     private void Start()
     {
         towerSprite = GetComponent<SpriteRenderer>();
-
+        upgradeSound = GetComponent<AudioSource>();
         errorUpgrade = GameManager.instance.errorUpgrade;
         upgradeAir = GameManager.instance.upgradeAirTower;
         upgradeCanon = GameManager.instance.upgradeCanon;
@@ -64,6 +67,7 @@ public class UI_Display : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Alpha1))
                 {
                     towerSprite.sprite = canon01;
+                    towerStatsAttackRange.Damage += 4;
                     upgradeCanon.SetActive(false);
                     canUpgrade = false;
                     towerStatsAttackRange.id = 0;
@@ -74,6 +78,10 @@ public class UI_Display : MonoBehaviour
                     upgradeCanon.SetActive(false);
                     canUpgrade = false;
                     towerStatsAttackRange.id = 1;
+                    gameObject.GetComponent<BalloonTower>().enabled = true;
+                    Tilemap groundTile = GameObject.Find("Script").GetComponent<SpawnTower>().towerGround;
+                    Vector3Int tilePos = GameObject.Find("Script").GetComponent<SpawnTower>().tilePosInfo;
+                    groundTile.SetColliderType(tilePos, Tile.ColliderType.Sprite);
                 }
             }
             else if (towerStatsAttackRange.theTowerName == "AirStrike")
@@ -82,7 +90,6 @@ public class UI_Display : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Alpha1))
                 {
                     towerSprite.sprite = airTower01;
-                    towerStatsAttackRange.Damage = 2;
                     towerStatsAttackRange.attackCooldown = 0.7f;
                     upgradeAir.SetActive(false);
                     canUpgrade = false;
@@ -91,7 +98,6 @@ public class UI_Display : MonoBehaviour
                 else if (Input.GetKeyDown(KeyCode.Alpha2))
                 {
                     towerSprite.sprite = airTower02;
-                    towerStatsAttackRange.Damage = 2;
                     towerStatsAttackRange.attackCooldown = 1.2f;
                     upgradeAir.SetActive(false);
                     canUpgrade = false;
@@ -113,27 +119,37 @@ public class UI_Display : MonoBehaviour
         //Debug.Log("Test");
         attackRangeSprite.enabled = true;
         //towerData.enabled = true;
-        if (Input.GetMouseButtonDown(0) && towerStatsAttackRange.level<3)
+        if (Input.GetMouseButtonDown(0) && towerStatsAttackRange.level<3 && towerStatsAttackRange.id != 1)
         {
             if (GameManager.instance.financial.useMoney(towerStatsAttackRange.cost))
             {
+                if(towerStatsAttackRange.theTowerName == "AirStrike")
+                {
+                    towerStatsAttackRange.Damage += 1;
+                    towerStatsAttackRange.attackCooldown -= 0.1f;
+                    
+                }
+                if (towerStatsAttackRange.theTowerName == "Canon")
+                {
+                    towerStatsAttackRange.Damage += 3;
+                }
                 attackRangeSprite.transform.localScale += new Vector3(0.5f, 0.5f, 0.5f);
-                towerStatsAttackRange.Damage += 1;
-                towerStatsAttackRange.attackCooldown -= 0.2f;
                 towerStatsAttackRange.level++;
                 GameManager.instance.displayUpgradeOption(name, towerStatsAttackRange.cost);
-                towerStatsAttackRange.cost++;
+                towerStatsAttackRange.cost+=4;
                 value += towerStatsAttackRange.cost;
+                upgradeSound.PlayOneShot(upgradeSoundClip);
             }
             if (towerStatsAttackRange.level == 3) canUpgrade = true;
         }
-        if(Input.GetMouseButtonDown(0) && towerStatsAttackRange.level >= 3)
+        if(Input.GetMouseButtonDown(0) && towerStatsAttackRange.level >= 3 && towerStatsAttackRange.id != 1)
         {
             StartCoroutine(displayError());
 
         }
         if (Input.GetMouseButtonDown(1))
         {
+            upgradeSound.PlayOneShot(sellingClip);
             Debug.Log("Tesst");
             Tilemap groundTile = GameObject.Find("Script").GetComponent<SpawnTower>().towerGround;
             Vector3Int tilePos = GameObject.Find("Script").GetComponent<SpawnTower>().tilePosInfo;

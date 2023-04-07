@@ -7,6 +7,7 @@ public class Projectile : MonoBehaviour
     private Enemy targettedEnemy;
     private float projectileSpeed;
     private AttackRange attackRange;
+    private string name;
     public int damage;
     public int id = -1;
     void Update()
@@ -21,6 +22,7 @@ public class Projectile : MonoBehaviour
         projectileSpeed = range.ProjectileSpeed;
         damage = range.Damage;
         id = range.id;
+        name = range.theTowerName;
     }
     void Aim()
     {
@@ -31,14 +33,25 @@ public class Projectile : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "GroundEnemy"|| collision.tag == "AirEnemy" || collision.tag == "HeavyEnemy")
+        if(name== "Canon")
         {
-            if (id == 3)
+            if (collision.tag == "GroundEnemy" || collision.tag == "HeavyEnemy")
             {
-                StartCoroutine(stunAttack(collision.gameObject.GetComponent<Enemy>()));
+                collision.gameObject.GetComponent<Enemy>().takeDamage(damage);
+                Destroy(gameObject);
             }
-            collision.gameObject.GetComponent<Enemy>().takeDamage(damage);
-            Destroy(gameObject);
+        }
+        if (name == "AirStrike")
+        {
+            if(collision.tag == "GroundEnemy"|| collision.tag == "AirEnemy" || collision.tag == "HeavyEnemy")
+            {
+                if (id == 3)
+                {
+                    StartCoroutine(stunAttack(collision.gameObject.GetComponent<Enemy>()));
+                }
+                collision.gameObject.GetComponent<Enemy>().takeDamage(damage);
+                Destroy(gameObject);
+            }
         }
     }
     IEnumerator stunAttack(Enemy enemyTarget)

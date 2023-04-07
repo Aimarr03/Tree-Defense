@@ -9,17 +9,21 @@ public class MainBuilding : MonoBehaviour
     public Color defaultColor;
     private SpriteRenderer spriteRenderer;
 
+    public AudioSource audioPlay;
+    public AudioClip damagedClip;
     public void Awake()
     {
         damagedColor = new Color(1, 0, 0);
         defaultColor = new Color(1,1,1);
         spriteRenderer = GetComponent<SpriteRenderer>();
+        audioPlay = GetComponent<AudioSource>();
     }
 
     public void takeDamaged(int damage)
     {
         if (health > 0) { 
             health-=damage;
+            audioPlay.PlayOneShot(damagedClip);
             StartCoroutine(colorDamaged());
             GameManager.instance.reduceHp(health);
             //GameManager.instance.HP.text = health.ToString();

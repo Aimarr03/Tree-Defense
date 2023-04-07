@@ -201,7 +201,12 @@ MonoBehaviour:
   moveSpeed: 3.3
   alive: 1
   statusAttack: 0
+  canMove: 0
   bounty: 5
+  audioPlayer: {fileID: 0}
+  dragonAttacked: {fileID: 8300000, guid: 4d70fe67007197040a1dce59472de317, type: 3}
+  heavyAttacked: {fileID: 8300000, guid: cccec90c7d71f1248b4c889bfbbdc325, type: 3}
+  airAttacked: {fileID: 8300000, guid: e44a2b44580e8b740ab8d3280c2af9f4, type: 3}
 --- !u!114 &1738525072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,3 +219,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3c85af39336e9247999e826a11f6844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movespeed: 0

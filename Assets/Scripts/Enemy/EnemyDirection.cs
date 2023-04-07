@@ -7,7 +7,7 @@ public class EnemyDirection : MonoBehaviour
     private Transform targetRoute;
     private Enemy currentStat;
     private int checkpointIndex;
-    private float movespeed;
+    public float movespeed;
     void Start()
     {
         currentStat = GetComponent<Enemy>();
