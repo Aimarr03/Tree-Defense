@@ -8,7 +8,7 @@ public class Projectile : MonoBehaviour
     private float projectileSpeed;
     private AttackRange attackRange;
     public int damage;
-
+    public int id = -1;
     void Update()
     {
         Aim();
@@ -20,6 +20,7 @@ public class Projectile : MonoBehaviour
         attackRange = range;
         projectileSpeed = range.ProjectileSpeed;
         damage = range.Damage;
+        id = range.id;
     }
     void Aim()
     {
@@ -32,8 +33,18 @@ public class Projectile : MonoBehaviour
     {
         if(collision.tag == "GroundEnemy"|| collision.tag == "AirEnemy" || collision.tag == "HeavyEnemy")
         {
+            if (id == 3)
+            {
+                StartCoroutine(stunAttack(collision.gameObject.GetComponent<Enemy>()));
+            }
             collision.gameObject.GetComponent<Enemy>().takeDamage(damage);
             Destroy(gameObject);
         }
+    }
+    IEnumerator stunAttack(Enemy enemyTarget)
+    {
+        enemyTarget.canMove = false;
+        yield return new WaitForSeconds(0.1f);
+        enemyTarget.canMove = true;
     }
 }

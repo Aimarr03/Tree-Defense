@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
     public float moveSpeed = 5f;
     public bool alive = true;
     public bool statusAttack;
+    public bool canMove;
     [SerializeField] private int bounty = 5;
 
     Transform position;
@@ -25,6 +26,7 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
+        canMove = true;
         economy = GameObject.Find("Script").GetComponent<Econmy>();
         enemySprite = GetComponent<SpriteRenderer>();
         defaultColor = GetComponent<SpriteRenderer>().color;

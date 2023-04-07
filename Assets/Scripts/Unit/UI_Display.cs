@@ -82,6 +82,8 @@ public class UI_Display : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Alpha1))
                 {
                     towerSprite.sprite = airTower01;
+                    towerStatsAttackRange.Damage = 2;
+                    towerStatsAttackRange.attackCooldown = 0.7f;
                     upgradeAir.SetActive(false);
                     canUpgrade = false;
                     towerStatsAttackRange.id = 2;
@@ -89,6 +91,8 @@ public class UI_Display : MonoBehaviour
                 else if (Input.GetKeyDown(KeyCode.Alpha2))
                 {
                     towerSprite.sprite = airTower02;
+                    towerStatsAttackRange.Damage = 2;
+                    towerStatsAttackRange.attackCooldown = 1.2f;
                     upgradeAir.SetActive(false);
                     canUpgrade = false;
                     towerStatsAttackRange.id = 3;

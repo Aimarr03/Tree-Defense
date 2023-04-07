@@ -5,10 +5,12 @@ using UnityEngine;
 public class EnemyDirection : MonoBehaviour
 {
     private Transform targetRoute;
+    private Enemy currentStat;
     private int checkpointIndex;
     private float movespeed;
     void Start()
     {
+        currentStat = GetComponent<Enemy>();
         movespeed = GetComponent<Enemy>().moveSpeed;
         checkpointIndex = 0;
         targetRoute = EnemyRoute.checkpoints[checkpointIndex];
@@ -17,7 +19,8 @@ public class EnemyDirection : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, targetRoute.position, movespeed * Time.deltaTime);
+        StartCoroutine(canMove());
+        if(currentStat.canMove) transform.position = Vector3.MoveTowards(transform.position, targetRoute.position, movespeed * Time.deltaTime);
         if (transform.position == targetRoute.position)
         {
             updateCheckPoint();
@@ -28,5 +31,13 @@ public class EnemyDirection : MonoBehaviour
         if (checkpointIndex == EnemyRoute.checkpoints.Length - 1) return;
         checkpointIndex++;
         targetRoute = EnemyRoute.checkpoints[checkpointIndex];
+    }
+    IEnumerator canMove()
+    {
+        if (!currentStat.canMove)
+        {
+            yield return new WaitForSeconds(0.15f);
+            currentStat.canMove = true;
+        }
     }
 }
