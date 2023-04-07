@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 240
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -471,9 +471,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 5765
-        y: 246
-        width: 1080
-        height: 186
+        y: 233
+        width: 336
+        height: 199
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -491,8 +491,8 @@ TextureImporter:
       name: flying-enemy_17
       rect:
         serializedVersion: 2
-        x: 6846
-        y: 246
+        x: 6137
+        y: 242
         width: 349
         height: 173
       alignment: 0
@@ -512,8 +512,8 @@ TextureImporter:
       name: flying-enemy_18
       rect:
         serializedVersion: 2
-        x: 7216
-        y: 246
+        x: 6493
+        y: 237
         width: 329
         height: 173
       alignment: 0
@@ -533,9 +533,9 @@ TextureImporter:
       name: flying-enemy_19
       rect:
         serializedVersion: 2
-        x: 7584
-        y: 242
-        width: 311
+        x: 6852
+        y: 251
+        width: 338
         height: 177
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -554,10 +554,10 @@ TextureImporter:
       name: flying-enemy_20
       rect:
         serializedVersion: 2
-        x: 7959
-        y: 238
-        width: 286
-        height: 177
+        x: 7213
+        y: 242
+        width: 353
+        height: 187
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -575,10 +575,10 @@ TextureImporter:
       name: flying-enemy_21
       rect:
         serializedVersion: 2
-        x: 8330
-        y: 234
-        width: 261
-        height: 189
+        x: 7589
+        y: 224
+        width: 311
+        height: 204
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -588,6 +588,48 @@ TextureImporter:
       bones: []
       spriteID: ff4bcc526fad3ce40b456c70f814b50e
       internalID: 2107188530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flying-enemy_22
+      rect:
+        serializedVersion: 2
+        x: 7923
+        y: 229
+        width: 339
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f2893aa2b12d10468e691ce3bb2e705
+      internalID: 1285773771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flying-enemy_23
+      rect:
+        serializedVersion: 2
+        x: 8290
+        y: 224
+        width: 343
+        height: 229
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c874b4503a8f6d345844750927860f81
+      internalID: 812184140
       vertices: []
       indices: 
       edges: []
@@ -605,6 +647,7 @@ TextureImporter:
     nameFileIdTable:
       flying-enemy_2: 1261669332
       flying-enemy_15: 2140247075
+      flying-enemy_22: 1285773771
       flying-enemy_13: 1032738087
       flying-enemy_7: -1959422736
       flying-enemy_10: -141430963
@@ -624,6 +667,7 @@ TextureImporter:
       flying-enemy_5: 2134086483
       flying-enemy_21: 2107188530
       flying-enemy_16: -732622671
+      flying-enemy_23: 812184140
       flying-enemy_1: 690253517
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0

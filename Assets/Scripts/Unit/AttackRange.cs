@@ -91,7 +91,7 @@ public class AttackRange : MonoBehaviour
     {
         if (theTowerName == "Canon")
         {
-            if (collision.tag == "GroundEnemy")
+            if (collision.tag == "GroundEnemy" || collision.tag == "HeavyEnemy")
             {
                 Debug.Log("Enemy enter test02 territory");
                 enemies.Enqueue(collision.GetComponent<Enemy>());
@@ -99,7 +99,7 @@ public class AttackRange : MonoBehaviour
         }
         else if (theTowerName == "AirStrike")
         {
-            if (collision.tag == "GroundEnemy" || collision.tag == "AirEnemy")
+            if (collision.tag == "GroundEnemy" || collision.tag == "AirEnemy" || collision.tag == "HeavyEnemy")
             {
                 Debug.Log("Enemy enter test04 territory");
                 enemies.Enqueue(collision.GetComponent<Enemy>());
@@ -109,7 +109,7 @@ public class AttackRange : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "GroundEnemy" || collision.gameObject.tag == "AirEnemy")
+        if (collision.gameObject.tag == "GroundEnemy" || collision.gameObject.tag == "AirEnemy" || collision.tag == "HeavyEnemy")
         {
             Debug.Log("Enemy exit tower territory");
             target = null;
