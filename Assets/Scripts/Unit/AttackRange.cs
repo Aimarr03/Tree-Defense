@@ -14,6 +14,7 @@ public class AttackRange : MonoBehaviour
     public float attackCooldown = 1f;
     public int level = 1;
     public int cost = 2;
+    public int id = -1;
     
     private Enemy target;
     private Queue<Enemy> enemies = new Queue<Enemy>();
@@ -81,12 +82,31 @@ public class AttackRange : MonoBehaviour
     }
     void Shoot()
     {
-        GameObject projectile = Instantiate(ammo);
-        Projectile aim = projectile.GetComponent<Projectile>();
-        aim.getData(this);
-        projectile.transform.position = transform.position;
+        GameObject projectile;
+        Projectile aim;
+        if(id == 2)
+        {
+            StartCoroutine(multipleAttack());
+        }
+        else
+        {
+            projectile = Instantiate(ammo);
+            aim = projectile.GetComponent<Projectile>();
+            aim.getData(this);
+            projectile.transform.position = transform.position;
+        }
     }
-
+    IEnumerator multipleAttack()
+    {
+        for(int counter = 0; counter<=1; counter++)
+        {
+            GameObject singleAmmo = Instantiate(ammo);
+            Projectile ammoAim = singleAmmo.GetComponent<Projectile>();
+            ammoAim.getData(this);
+            singleAmmo.transform.position = transform.position;
+            yield return new WaitForSeconds(0.2f);
+        }
+    }
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if (theTowerName == "Canon")

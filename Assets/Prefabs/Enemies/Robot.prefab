@@ -147,7 +147,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.015783787, y: -0.88389575}
+  m_Offset: {x: 0.015783787, y: -0.83654416}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -158,7 +158,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.7688608, y: 1.3483126}
+  m_Size: {x: 0.7688608, y: 1.4430158}
   m_EdgeRadius: 0
 --- !u!114 &4691702624792950322
 MonoBehaviour:
@@ -175,7 +175,7 @@ MonoBehaviour:
   name: 
   health: 30
   damage: 12
-  score: 500
+  score: 100
   attackSpeed: 1.7
   moveSpeed: 1.7
   alive: 1

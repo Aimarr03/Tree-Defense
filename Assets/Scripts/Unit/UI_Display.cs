@@ -9,16 +9,24 @@ public class UI_Display : MonoBehaviour
 {
     public SpriteRenderer attackRangeSprite;
     public AttackRange towerStatsAttackRange;
+
     string name;
     string damage;
     string attackSpeed;
     string level;
+
     public Text errorUpgrade;
+    public GameObject upgradeAir;
+    public GameObject upgradeCanon;
+
     SpriteRenderer towerSprite;
-    [SerializeField] Sprite airTower03;
-    [SerializeField] Sprite canon03;
+    public Sprite airTower01;
+    public Sprite airTower02;
+    public Sprite canon01;
+    public Sprite canon02;
 
     int value;
+    bool canUpgrade;
     /*public Text towerName;
     public Text towerDamage;
     public Text attackSpeed;*/
@@ -26,13 +34,68 @@ public class UI_Display : MonoBehaviour
     private void Start()
     {
         towerSprite = GetComponent<SpriteRenderer>();
+
         errorUpgrade = GameManager.instance.errorUpgrade;
+        upgradeAir = GameManager.instance.upgradeAirTower;
+        upgradeCanon = GameManager.instance.upgradeCanon;
+
         errorUpgrade.enabled = false;
         towerStatsAttackRange = gameObject.transform.GetChild(0).GetComponent<AttackRange>();
         attackRangeSprite = gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>();
         value = GetComponent<TowerStats>().cost;
+        airTower01 = Resources.Load<Sprite>("Tower/magic-1");
+        airTower02 = Resources.Load<Sprite>("Tower/magic-3");
+        canon01 = Resources.Load<Sprite>("Tower/bunker-2");
+        canon02 = Resources.Load<Sprite>("Tower/bunker-3");
+
+    }
+    private void Update()
+    {
+        UpgradingMax();
     }
 
+    void UpgradingMax()
+    {
+        if (canUpgrade)
+        {
+            if (towerStatsAttackRange.theTowerName == "Canon")
+            {
+                upgradeCanon.SetActive(true);
+                if (Input.GetKeyDown(KeyCode.Alpha1))
+                {
+                    towerSprite.sprite = canon01;
+                    upgradeCanon.SetActive(false);
+                    canUpgrade = false;
+                    towerStatsAttackRange.id = 0;
+                }
+                else if (Input.GetKeyDown(KeyCode.Alpha2))
+                {
+                    towerSprite.sprite = canon02;
+                    upgradeCanon.SetActive(false);
+                    canUpgrade = false;
+                    towerStatsAttackRange.id = 1;
+                }
+            }
+            else if (towerStatsAttackRange.theTowerName == "AirStrike")
+            {
+                upgradeAir.SetActive(true);
+                if (Input.GetKeyDown(KeyCode.Alpha1))
+                {
+                    towerSprite.sprite = airTower01;
+                    upgradeAir.SetActive(false);
+                    canUpgrade = false;
+                    towerStatsAttackRange.id = 2;
+                }
+                else if (Input.GetKeyDown(KeyCode.Alpha2))
+                {
+                    towerSprite.sprite = airTower02;
+                    upgradeAir.SetActive(false);
+                    canUpgrade = false;
+                    towerStatsAttackRange.id = 3;
+                }
+            }
+        }
+    }
     public void OnMouseOver()
     {
         name = towerStatsAttackRange.theTowerName;
@@ -42,8 +105,7 @@ public class UI_Display : MonoBehaviour
         GameManager.instance.updateInfo(name, damage, attackSpeed, level);
         GameManager.instance.displayUpgradeOption(name,towerStatsAttackRange.cost);
         GameManager.instance.displayUpgradeOption(name,towerStatsAttackRange.cost);
-        airTower03 = Resources.Load<Sprite>("Tower/magic-3");
-        canon03 = Resources.Load<Sprite>("Tower/bunker-2");
+        
         //Debug.Log("Test");
         attackRangeSprite.enabled = true;
         //towerData.enabled = true;
@@ -59,17 +121,7 @@ public class UI_Display : MonoBehaviour
                 towerStatsAttackRange.cost++;
                 value += towerStatsAttackRange.cost;
             }
-            if(towerStatsAttackRange.level == 3)
-            {
-                if(towerStatsAttackRange.theTowerName == "Canon")
-                {
-                    towerSprite.sprite = canon03;
-                }
-                else if(towerStatsAttackRange.theTowerName == "AirStrike")
-                {
-                    towerSprite.sprite = airTower03;
-                }
-            }
+            if (towerStatsAttackRange.level == 3) canUpgrade = true;
         }
         if(Input.GetMouseButtonDown(0) && towerStatsAttackRange.level >= 3)
         {

@@ -34,6 +34,9 @@ public class GameManager : MonoBehaviour
     public GameObject gameoverPanel;
     public GameObject winPanel;
     public GameObject result;
+    public GameObject upgradeCanon;
+    public GameObject upgradeAirTower;
+
 
     public bool gameStatus;
     public bool win;
