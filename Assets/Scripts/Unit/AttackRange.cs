@@ -132,10 +132,7 @@ public class AttackRange : MonoBehaviour
         {
             if (collision.tag == "GroundEnemy" || collision.tag == "HeavyEnemy")
             {
-                if(id == 0)
-                {
-                    collision.GetComponent<EnemyDirection>().movespeed *= 0.5f;
-                }
+
                 Debug.Log("Enemy enter test02 territory");
                 enemies.Enqueue(collision.GetComponent<Enemy>());
             }

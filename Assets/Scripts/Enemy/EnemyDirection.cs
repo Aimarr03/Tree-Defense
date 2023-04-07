@@ -20,6 +20,7 @@ public class EnemyDirection : MonoBehaviour
     void Update()
     {
         StartCoroutine(canMove());
+        StartCoroutine(slowMove());
         if(currentStat.canMove) transform.position = Vector3.MoveTowards(transform.position, targetRoute.position, movespeed * Time.deltaTime);
         if (transform.position == targetRoute.position)
         {
@@ -31,6 +32,16 @@ public class EnemyDirection : MonoBehaviour
         if (checkpointIndex == EnemyRoute.checkpoints.Length - 1) return;
         checkpointIndex++;
         targetRoute = EnemyRoute.checkpoints[checkpointIndex];
+    }
+    IEnumerator slowMove()
+    {
+        if (currentStat.slowMove)
+        {
+            movespeed *= 0.5f;
+            yield return new WaitForSeconds(0.7f);
+            movespeed *= 2;
+
+        }
     }
     IEnumerator canMove()
     {

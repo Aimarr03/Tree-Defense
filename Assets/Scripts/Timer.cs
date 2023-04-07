@@ -10,7 +10,6 @@ public class Timer : MonoBehaviour
     private float startTime;
     private int breakPoint;
     private int intervalTime;
-    private Enemy enemy;
 
     private string minute;
     private string second;
@@ -19,8 +18,7 @@ public class Timer : MonoBehaviour
     void Start()
     {
         startTime = Time.time;
-        intervalTime = 20;
-        enemy = GameObject.FindGameObjectWithTag("AirEnemy").GetComponent<Enemy>();
+        intervalTime = 10;
     }
 
     // Update is called once per frame
@@ -41,7 +39,8 @@ public class Timer : MonoBehaviour
         if (breakPoint % intervalTime == 0 && statusUpdate && time > 1)
         {
             statusUpdate = false;
-            enemy.upgradeEnemy();
+            EnemyUpgrade.upgradeFunction.Upgraded();
+            EnemySpawn.spawning.intervalSpawn -= 0.1f;
             GameManager.instance.updateWave();
             yield return new WaitForSeconds(1f);
             statusUpdate = true;

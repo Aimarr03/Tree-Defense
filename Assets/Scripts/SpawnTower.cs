@@ -37,7 +37,7 @@ public class SpawnTower : MonoBehaviour
         {
             getPos();
         }
-        if(GameManager.instance.score >= 500)
+        if(GameManager.instance.score >= 2000)
         {
             GameManager.instance.gameStatus = false;
             GameManager.instance.win = true;

@@ -12,9 +12,11 @@ public class Enemy : MonoBehaviour
     public int score = 500;
     public float attackSpeed = 0.5f;
     public float moveSpeed = 5f;
+
     public bool alive = true;
     public bool statusAttack;
     public bool canMove;
+    public bool slowMove;
     [SerializeField] private int bounty = 5;
 
     Transform position;
@@ -85,10 +87,6 @@ public class Enemy : MonoBehaviour
             MainBuilding building = collision.GetComponent<MainBuilding>();
             StartCoroutine(Attacking(building));
         }
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        statusAttack = false;
     }
     public IEnumerator Attacking(MainBuilding test)
     {

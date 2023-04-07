@@ -144,7 +144,7 @@ MonoBehaviour:
   towerSound: {fileID: 0}
   canonAttack: {fileID: 8300000, guid: bbcd6c24f6054ef42bb538619cfbf3ad, type: 3}
   airAttack: {fileID: 8300000, guid: cbfbf59d9c948da4f8eb0e5572e1bbd0, type: 3}
-  ammo: {fileID: 1761404048428614243, guid: fe2542f9c3c8ade46ab34747a77fffce, type: 3}
+  ammo: {fileID: 3906371640410114004, guid: 1bd460b666a60df4691eb1dcdbb500ba, type: 3}
 --- !u!82 &7183644274571280651
 AudioSource:
   m_ObjectHideFlags: 0
@@ -319,7 +319,7 @@ SpriteRenderer:
   m_SortingLayerID: 39006299
   m_SortingLayer: 3
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 8cd71a34fbfae7e4fb6f778519f785d8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 516bc9c212b16f04da7af0e4bd85ae7a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -390,6 +390,7 @@ MonoBehaviour:
   upgradeCanon: {fileID: 0}
   upgradeSound: {fileID: 0}
   upgradeSoundClip: {fileID: 8300000, guid: 1f8a661532ae61144acf39192880e876, type: 3}
+  sellingClip: {fileID: 0}
   airTower01: {fileID: 0}
   airTower02: {fileID: 0}
   canon01: {fileID: 0}

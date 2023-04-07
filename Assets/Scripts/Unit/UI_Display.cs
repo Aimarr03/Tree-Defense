@@ -46,7 +46,7 @@ public class UI_Display : MonoBehaviour
         towerStatsAttackRange = gameObject.transform.GetChild(0).GetComponent<AttackRange>();
         attackRangeSprite = gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>();
         value = GetComponent<TowerStats>().cost;
-        airTower01 = Resources.Load<Sprite>("Tower/magic-1");
+        airTower01 = Resources.Load<Sprite>("Tower/magic-2");
         airTower02 = Resources.Load<Sprite>("Tower/magic-3");
         canon01 = Resources.Load<Sprite>("Tower/bunker-2");
         canon02 = Resources.Load<Sprite>("Tower/bunker-3");
